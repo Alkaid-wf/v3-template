@@ -1,0 +1,63 @@
+// colors
+$primary: #007db8;
+$primaryLight: lighten($primary, 40%);
+$borderColor: #eeeeee;
+$bgColor: #f2f3f5;
+
+// props
+$border: 0.1rem solid $borderColor;
+
+// class
+// 文本溢出省略
+.overflowTxt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// 小一号的按钮
+.button-small {
+  height: 3.6rem;
+  padding: 0 2.5rem;
+}
+
+// 把分页器扔到页面底部
+.paginationToBottom {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  .el-table {
+    margin-bottom: 2rem;
+  }
+  .el-pagination {
+    margin-top: auto;
+  }
+}
+
+@mixin block {
+  padding: 2rem;
+  border-radius: 0.4rem;
+  background-color: var(--el-bg-color);
+  box-shadow: var(--el-box-shadow-lighter);
+}
+
+// 多行溢出省略
+@mixin multilineEllipsis($row) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $row;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
+  line-break: anywhere;
+}
+
+// 清除滚动条
+@mixin hiddenScrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+  &::-webkit-scrollbar {
+    width: 0;
+    display: none; /* Chrome Safari */
+  }
+}

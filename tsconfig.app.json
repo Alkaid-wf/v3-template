@@ -1,0 +1,11 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["**/*.d.ts", "src/**/*.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "composite": true,
+    "baseUrl": ".",
+    "paths": { "@/*": ["./src/*"] },
+    "types": ["vite/client", "element-plus/global", "unplugin-icons/types/vue", "vue/macros-global"]
+  }
+}
