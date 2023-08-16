@@ -20,7 +20,7 @@ export default defineConfig({
   resolve: { alias: { '@': pathSrc } },
 
   server: {
-    port: 9996,
+    port: 4444,
     host: true
   },
 

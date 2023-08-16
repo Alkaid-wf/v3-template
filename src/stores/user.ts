@@ -1,10 +1,15 @@
 import useDictStore from './dict';
 
+// #007db8
+const defaultTheme = '#FF6A00';
+
 export default defineStore('user', {
   state: () => ({
     loginUrl: '',
     token: getToken(),
-    profile: {}
+    profile: { name: 'FGG' } as Record<string, any>,
+    // 主题色
+    theme: local.get('theme') || defaultTheme
   }),
 
   actions: {
@@ -42,6 +47,13 @@ export default defineStore('user', {
     /** 获取用户个人信息 */
     async getProfile() {
       // this.profile = resHandle(await getProfile(), '')
+    },
+
+    /** 设置主题色 */
+    setTheme(color: string) {
+      const c = color || defaultTheme;
+      this.theme = c;
+      local.set('theme', c);
     }
   }
 });

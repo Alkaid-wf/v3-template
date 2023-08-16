@@ -1,4 +1,4 @@
-@use './transition.scss';
+@use "./transition.scss";
 
 html,
 body,
@@ -18,7 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial,
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial,
     sans-serif;
   color: var(--el-text-color-primary);
   font-size: 1.4rem;
@@ -55,7 +55,7 @@ a {
   text-align: center;
   line-height: inherit;
   &::before {
-    content: '暂无数据';
+    content: "暂无数据";
   }
 }
 
@@ -80,7 +80,7 @@ a {
 
 .el-form {
   .el-form-item {
-    .el-form-item__content > div[class^='el-'] {
+    .el-form-item__content > div[class^="el-"] {
       width: 100%;
     }
     .el-form-item__label {

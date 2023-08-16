@@ -1,6 +1,6 @@
 // colors
-$primary: #007db8;
-$primaryLight: lighten($primary, 40%);
+$primary: var(--el-color-primary);
+$primaryLight: var(--el-color-primary-light-9);
 $borderColor: #eeeeee;
 $bgColor: #f2f3f5;
 
