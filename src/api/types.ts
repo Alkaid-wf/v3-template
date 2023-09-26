@@ -25,3 +25,8 @@ export interface ResArr extends Def {
   data?: Record<string, any>[];
   total?: number;
 }
+
+export interface Page {
+  page: number;
+  per_page: number;
+}

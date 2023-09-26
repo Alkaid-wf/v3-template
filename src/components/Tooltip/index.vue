@@ -1,22 +1,25 @@
 <script lang="ts" setup>
+import { isEmpty } from 'lodash';
+import type { Component } from 'vue';
+
 interface Props {
+  tip?: string;
   content?: string;
   rows?: number;
-  tag?: string;
-  className?: string;
+  tag?: string | Component;
+  props?: Record<string, any>;
 }
 
 withDefaults(defineProps<Props>(), {
+  tip: '',
   content: '',
   rows: 1,
   tag: 'span',
-  className: ''
+  props: () => ({})
 });
 
 // 传递属性，事件
 const attr = useAttrs();
-
-const isMobile = inject('isMobile');
 
 const textRef = ref();
 
@@ -40,13 +43,15 @@ onMounted(() => {
 
 <template>
   <el-tooltip
-    :content="content"
-    :disabled="disabled"
+    :content="tip || content"
+    :disabled="!isEmpty(content) && disabled"
     placement="top"
     :trigger="isMobile ? 'click' : 'hover'"
     v-bind="attr"
   >
-    <component :is="tag" ref="textRef" :class="`tooltip ${className}`">{{ content }}</component>
+    <component :is="tag" ref="textRef" class="tooltip" v-bind="props">
+      <slot>{{ content }}</slot>
+    </component>
   </el-tooltip>
 </template>
 

@@ -19,6 +19,26 @@ export const routes: RouteRecordRaw[] = [
   },
 
   {
+    path: '/example',
+    component: Layout,
+    meta: { title: '示例', icon: icon('launch') },
+    children: [
+      {
+        path: 'page1',
+        name: 'Page1',
+        meta: { title: '页面一' },
+        component: () => import('@/views/example/page1/index.vue')
+      },
+      {
+        path: 'page2',
+        name: 'Page2',
+        meta: { title: '页面二' },
+        component: () => import('@/views/example/page2/index.vue')
+      }
+    ]
+  },
+
+  {
     path: '/:pathMatch(.*)*',
     name: '404',
     component: () => import('@/views/Error.vue'),

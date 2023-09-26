@@ -139,6 +139,19 @@ a {
   .el-table__body tbody td.el-table__cell {
     .cell {
       line-height: 3rem;
+      .icon-button {
+        height: 3.2rem;
+        width: 3.2rem;
+        border-radius: 0.5rem;
+        border: unset;
+        display: inline-flex;
+        .el-icon {
+          font-size: 1.8rem;
+        }
+        span {
+          display: none;
+        }
+      }
     }
   }
   .el-table__cell {
