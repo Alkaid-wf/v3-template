@@ -27,7 +27,7 @@ export default defineStore('user', {
 
     /** 快去登录 */
     toLogin(redirect = '') {
-      // 保存重定向地址 - jAccount重定向的地址无法携带参数（会导致认证异常）
+      // 保存重定向地址（cas登录用）
       session.set('redirect', redirect);
 
       window.location.href = this.loginUrl;

@@ -29,7 +29,7 @@ const { VITE_APP_TITLE } = import.meta.env;
     .logo {
       width: 5.5rem;
       height: 1.9rem;
-      background-image: url('@/assets/img/logo.png');
+      background-image: url('@/assets/img/logo.webp');
       background-size: 100%;
       background-repeat: no-repeat;
     }

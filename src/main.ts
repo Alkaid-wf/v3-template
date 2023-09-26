@@ -11,4 +11,6 @@ const pinia = createPinia();
 
 app.use(router).use(pinia).mount('#app');
 
+/** element-plus 组件默认属性配置 */
+// 弹窗插入至body元素（防遮挡）
 ElDialog.props.appendToBody.default = true;

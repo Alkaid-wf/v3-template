@@ -5,6 +5,7 @@ import { ElMessageBox } from 'element-plus';
 
 export const isRelogin = { show: false };
 const { VITE_APP_BASE_URL } = import.meta.env;
+const controller = new AbortController();
 
 // 创建axios实例
 const service = axios.create({
@@ -16,6 +17,10 @@ const service = axios.create({
 // 请求拦截
 service.interceptors.request.use(
   (config) => {
+    // 重新登录弹窗存在时，阻止后续请求
+    config.signal = controller.signal;
+    if (isRelogin.show) controller.abort('');
+
     // 是否需要设置 token
     const needToken = config.headers?.needToken !== false;
     const token = getToken();
@@ -83,16 +88,17 @@ service.interceptors.response.use(
           confirmButtonText: '重新登录',
           type: 'warning'
         })
-          .then(() => useUserStore().logout())
+          .then(() => useUserStore().toLogin())
           .finally(() => (isRelogin.show = false));
       }
       return Promise.resolve(res.data);
     }
   },
   (error) => {
-    console.error(`err${String(error)}`, error);
     let { message } = error;
-    if (message === 'Network Error') {
+
+    if (message === 'canceled') return { code: 0 };
+    else if (message === 'Network Error') {
       message = '后端接口连接异常';
     } else if (message.includes('timeout')) {
       message = '系统接口请求超时';
@@ -100,7 +106,9 @@ service.interceptors.response.use(
       const code = String(message.slice(-3));
       message = code === '429' ? '您的操作频率过快，请稍后再试' : `系统接口 ${code} 异常`;
     }
+
     ElMessage.error(message);
+    console.error(`err${String(error)}`, error);
     return Promise.reject(error);
   }
 );
